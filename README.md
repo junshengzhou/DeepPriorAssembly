@@ -62,10 +62,11 @@ Our code is implemented in Python 3.8, PyTorch 1.11.0 and CUDA 11.3. The code an
 ## Citation
 If you find our code or paper useful, please consider citing
 
-
+```bib
   @inproceedings{zhou2024deep,
       title = {Zero-Shot Scene Reconstruction from Single Images with Deep Prior Assembly},
       author = {Zhou, Junsheng and Liu, Yu-Shen and Han, Zhizhong},
       booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
       year = {2024}
   }
+```
