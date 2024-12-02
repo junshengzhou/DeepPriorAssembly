@@ -1,0 +1,80 @@
+encoder:
+  cross_attention_dataset: pcl_and_multiview_pcl
+  d_latent: 1024
+  data_ctx: 1024
+  fps_method: first
+  heads: 8
+  init_scale: 0.25
+  inner_batch_size:
+  - 16384
+  - 20
+  input_channels: 6
+  latent_bottleneck:
+    diffusion:
+      schedule: inv_parabola
+      schedule_args:
+        power: 5.0
+      timesteps: 1024
+    diffusion_prob: 0.1
+    name: clamp_diffusion_noise
+  layers: 12
+  max_depth: 9.0
+  max_unrolls: 1
+  min_unrolls: 1
+  name: PointCloudPerceiverChannelsEncoder
+  params_proj:
+    init_scale: 1.0
+    learned_scale: 0.0625
+    name: channels
+    use_ln: true
+  patch_size: 8
+  pointconv_hidden:
+  - 1024
+  - 1024
+  pointconv_padding_mode: circular
+  pointconv_patch_size: 8
+  pointconv_samples: 64
+  pointconv_stride: 4
+  pos_emb: nerf
+  use_depth: true
+  use_pointconv: true
+  width: 1024
+name: Transmitter
+renderer:
+  grid_size: 128
+  n_coarse_samples: 64
+  n_fine_samples: 128
+  name: NeRSTFRenderer
+  nerstf:
+    activation: swish
+    d_hidden: 256
+    density_activation: relu
+    init_scale: 0.25
+    initial_density_bias: 0.1
+    insert_direction_at: 4
+    meta_bias: false
+    meta_parameters: true
+    n_hidden_layers: 6
+    n_meta_layers: 4
+    name: MLPNeRSTFModel
+    posenc_version: nerf
+    separate_coarse_channels: true
+    separate_nerf_channels: true
+    trainable_meta: false
+  separate_shared_samples: true
+  void:
+    background:
+    - 0
+    - 0
+    - 0
+    name: VoidNeRFModel
+  volume:
+    bbox_max:
+    - 1.0
+    - 1.0
+    - 1.0
+    bbox_min:
+    - -1.0
+    - -1.0
+    - -1.0
+    name: BoundingBoxVolume

@@ -10,7 +10,7 @@
     <a href="https://h312h.github.io/"><strong>Zhizhong Han</strong></a>
 
   </p>
-  <h2 align="center" style="border-bottom: none;">NeurIPS 2024</h2>
+  <h3 align="center" style="border-bottom: none;">NeurIPS 2024</h3>
   <h3 align="center"><a href="">Paper</a> | <a href="https://junshengzhou.github.io/DeepPriorAssembly/">Project Page</a></h3>
   <div align="center"></div>
 </p>
@@ -57,7 +57,41 @@ We present <i>deep prior assembly</i>, a novel framework that assembles diverse 
 
 
 ## Installation
-Our code is implemented in Python 3.8, PyTorch 1.11.0 and CUDA 11.3. The code and instructions are coming soon.
+Clone this repository and install the required packages:
+
+```
+git clone https://github.com/junshengzhou/DeepPriorAssembly
+cd DeepPriorAssembly
+
+conda create -n dpa python=3.11
+conda activate dpa
+conda install pytorch torchvision pytorch-cuda=12.1 -c pytorch -c nvidia
+```
+
+### Run DeepPriorAssembly:
+
+You should then install the required packages of the large vision models we used: [Grounded-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything), [Stable-Diffusion](https://github.com/Stability-AI/stablediffusion), [DUST3R](https://github.com/naver/dust3r) and [Shap-E](https://github.com/openai/shap-e). After that, you can start using DeepPriorAssembly by running: 
+
+```
+bash run.sh
+```
+
+### Easier to run the demo:
+
+If you would just like to have a try on DeepPriorAssembly but do not want to install the complex environment, you can download the prepared demo data in [this link](https://drive.google.com/file/d/1ed6Nan6b7YNdVIv9_OecspAF9QUhu0G6/view?usp=sharing), put it in `data/outputs` and simply run the following command for a scene registration:
+```
+python registration/optimization_5dof.py --image_id 479d2d66-4d1a-47ca-a023-4286fc547301---rgb_0017 --geometry_dir data/outputs/geometry --mask_dir data/outputs/segmentation --object_dir  data/outputs/object_generation --output_dir data/outputs/final_registration
+```
+
+The results will be saved in `data/outputs/final_registration`.
+
+### Notice that:
+
+We use the DUST3R model to estimate the geometry in the released code. The adjustment is to make the code easier to use by reducing the requirement of camera intrinsics and the ground truth depths. If you would like to use the original Omnidata for geometry estimation, you can 1) follow the [repo](https://github.com/EPFL-VILAB/omnidata) for depth estimation, 2) use ground truth depths for solving depth scale and shift, and 3) project the depth to 3D space using camera intrinsics. 
+
+By default, we use a 5dof registration model since the image of Front-3D is captured parallelly to the ground. You can run `python optimization_7dof.py` in the `run.sh` for a 7dof registration.
+
+
 
 ## Citation
 If you find our code or paper useful, please consider citing
