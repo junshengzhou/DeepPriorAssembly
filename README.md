@@ -87,11 +87,11 @@ The results will be saved in `data/outputs/final_registration`.
 
 ### Notice that:
 
-We use the DUST3R model to estimate the geometry in the released code. The adjustment is to make the code easier to use by reducing the requirement of camera intrinsics and the ground truth depths. If you would like to use the original Omnidata for geometry estimation, you can 1) follow the [repo](https://github.com/EPFL-VILAB/omnidata) for depth estimation, 2) use ground truth depths for solving depth scale and shift, and 3) project the depth to 3D space using camera intrinsics. 
+- We use the DUST3R model to estimate the geometry in the released code. The adjustment is to make the code easier to use by reducing the requirement of camera intrinsics and the ground truth depths. If you would like to use the original Omnidata for geometry estimation, you can 1) follow the [repo](https://github.com/EPFL-VILAB/omnidata) for depth estimation, 2) use ground truth depths for solving depth scale and shift, and 3) project the depth to 3D space using camera intrinsics. 
 
-By default, we use a 5dof registration model since the image of Front-3D is captured parallelly to the ground. You can run `python optimization_7dof.py` in the `run.sh` for a 7dof registration.
+- By default, we use a 5dof registration model since the image of Front-3D is captured parallelly to the ground. You can run `python optimization_7dof.py` in the `run.sh` for a 7dof registration.
 
-
+- If you would like to use our code, please remember to check the LICENCES of the assembled large vision models in their codebases. 
 
 ## Citation
 If you find our code or paper useful, please consider citing
